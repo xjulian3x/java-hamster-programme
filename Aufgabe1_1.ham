@@ -1,0 +1,47 @@
+/*imperative program*///Aufgabe 1.1
+void main() {
+    /* erste iteration
+    vor();
+    vor();
+    nimm();
+    linksUm();
+    vor();
+    vor();
+    nimm();
+    linksUm();
+    linksUm();
+    vor();
+    vor();
+    vor();
+    vor();
+    vor();
+    linksUm();
+    linksUm();
+    linksUm();
+    vor();
+    nimm();
+    vor();
+    nimm();
+    */
+    
+    // wenigste schritte
+    linksUm();
+    linksUm();
+    linksUm();
+    vor();
+    vor();
+    vor();
+    nimm();
+    linksUm();
+    vor();
+    nimm();
+    vor();
+    linksUm();
+    vor();
+    vor();
+    vor();
+    nimm();
+    vor();
+    vor();
+    nimm();
+}

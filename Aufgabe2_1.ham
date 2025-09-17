@@ -1,0 +1,54 @@
+/*imperative program*/void main() {
+	// hoch
+    vor();
+    linksUm();
+    vor();
+	linksUm();
+    linksUm();
+    linksUm();
+    vor();
+    linksUm();
+    vor();
+    linksUm();
+    linksUm();
+    linksUm();
+    vor();
+    linksUm();
+    vor();
+    linksUm();
+    linksUm();
+    linksUm();
+    vor();
+    linksUm();
+    vor();
+    linksUm();
+    linksUm();
+    linksUm();
+    vor();
+    // wieder runter
+    vor();
+    linksUm();
+    linksUm();
+    linksUm();
+    vor();
+    linksUm();
+    vor();
+    linksUm();
+    linksUm();
+    linksUm();
+    vor();
+    linksUm();
+    vor();
+    linksUm();
+    linksUm();
+    linksUm();
+    vor();
+    linksUm();
+    vor();
+    linksUm();
+    linksUm();
+    linksUm();
+    vor();
+    linksUm();
+    
+}

@@ -1,0 +1,204 @@
+/*imperative program*/final int SPALTEN = 20; // Spalten des Territoriums
+final int MAX_ZAHLEN = SPALTEN-2; // erste und letzte Spalte ist eine Mauer
+int aktuellePositionX = 0; // aktuelle horizontale Position, 0 = 2. Spalte bzw. erstes weißes Feld 
+int aktuellePositionY = 0; // TODO: zurzeit unused, löschen?
+boolean gucktNachRechts = true; // Hamster guckt anfangs nach rechts
+
+// nur Werte von einschließlich 1-12 akzeptiert
+int zahlen[] = {3,1,6,5,9,4,2,12,10};
+
+void main() {
+	schreibeZahlen();
+	
+	// Sortieren; Voraussetzung: start ganz links oben
+	selectionSort();
+}
+
+/**
+ * Geht zu angegebener horizontaler Position
+ */
+void geheZuPosition(int position) {
+	if(aktuellePositionX==position || position<0 || position>MAX_ZAHLEN) {
+		// Hamster ist bereits an gegebener Position
+		// oder: übergebene Position "out of bounds"
+		return;
+	} else if(aktuellePositionX>position) {
+		// Hamster muss nach links
+		if(gucktNachRechts) {
+			kehrt();
+		}
+	} else {
+		// Hamster muss nach rechts
+		if(!gucktNachRechts) {
+			kehrt();
+		}
+	}
+	// Hamster guckt jetzt in richtige Position
+	while(aktuellePositionX!=position) {
+		vor();
+		if(gucktNachRechts) {
+			aktuellePositionX++;
+		} else {
+			aktuellePositionX--;
+		}
+	}
+}
+
+void schreibeZahlen() {
+	if(zahlen.length > MAX_ZAHLEN) {
+		schreib("FEHLER: es wurden mehr Zahlen angegeben als in diesem Territorium möglich (oder: Konstante SPALTEN falsch gesetzt)");
+		return;
+	}
+	
+	int aktuelleZahl;
+	for(int i=0;i<zahlen.length;i++) {
+		aktuelleZahl = zahlen[i];
+		if(aktuelleZahl==0) {
+			continue; // zum nächsten Wert
+		}
+		if(aktuelleZahl>12 || aktuelleZahl<0) {
+			schreib("FEHLER: Zahl out of bounds (1-12). Beende Schreibvorgang...");
+			return;
+		}
+		gibKoernerMehrfach(aktuelleZahl);
+		if(i<zahlen.length-1) {
+			vor();
+			aktuellePositionX++;
+		}
+	}
+	
+	// Zurück zum Anfang
+	geheZuPosition(0);
+}
+
+void selectionSort() {
+	if(aktuellePositionX!=0) {
+		schreib("FEHLER: Hamster ist nicht ganz links");
+		return;
+	}
+	if(gucktNachRechts == false) {
+		kehrt();
+	}
+	// suche kleinstes Element
+	int startPosition = 0;
+	int koernerAnStartPosition;
+	//ab hier schleife?
+	
+	int minKoerner = 13;
+	int minPosition = 0; // TODO: evtl anderer default wert, prüfen
+	while(vornFrei()) {
+		int aktuelleKoerner = zaehleKoerner();
+		if(aktuelleKoerner == 0) {
+			// leeres Feld/Ende, beende Schleife
+			break;
+		}
+		if(aktuelleKoerner < minKoerner) {
+			minKoerner = aktuelleKoerner;
+			minPosition = aktuellePositionX;
+		}
+		vor();
+		aktuellePositionX++;
+	}
+	
+	// gehe zu Startposition
+	geheZuPosition(startPosition);
+	koernerAnStartPosition = zaehleKoerner();
+	
+	// tausche kleinstes Element und Element an Startposition
+	// gehe zu Startposition und setze kleinstes Element ein
+	nimmAlle();
+	gibKoernerMehrfach(minKoerner);
+	// gehe zu minPosition und setze vorheriges Start-Element ein
+	geheZuPosition(minPosition);
+	nimmAlle();
+	gibKoernerMehrfach(koernerAnStartPosition);
+}
+
+/**
+ * Zählt wie viele Körner auf einem Feld sind
+ * @returns Anzahl Körner auf Feld
+ */
+int zaehleKoerner() {
+	int koerner = 0;
+	while(kornDa()) {
+		nimm();
+		koerner++;
+	}
+	
+	// genommene Körner fürs Zählen wieder zurückgeben
+	gibKoernerMehrfach(koerner);
+	
+	return koerner;
+}
+
+void gibKoernerMehrfach(int koerner) {
+	if(koerner>12) {
+		schreib("FEHLER: maximale Zahl 12 überschritten");
+		return;
+	}
+	for(int i=0;i<koerner;i++) {
+		if(!maulLeer()) {
+			gib();
+		} else {
+			schreib("FEHLER: Hamster hat nicht genug Körner");
+			return;
+		}
+	}
+}
+
+void sleep(int seconds) {
+	try {
+    	Thread.sleep(seconds*1000);
+	} catch (InterruptedException e) {
+    	Thread.currentThread().interrupt();
+	}
+}
+
+// TEMPLATE - Ergänzung bei kehrt()
+/**
+ * Dreht rechts (im Uhrzeigersinn), bzw. 3x links
+ */
+void rechtsUm() {
+	kehrt();
+	linksUm();
+}
+
+/**
+ * Geht mehrfach vor1
+ * @param times Wie oft vor gegangen werden soll
+ */
+void vorMehrfach(int times) {
+	for(int i=0; i<times; i++) {
+		vor();
+	}
+}
+
+/**
+ * dreht sich um 180 Grad / dreht sich 2x links
+ */
+void kehrt() {
+	gucktNachRechts = !gucktNachRechts; // Änderung von gucktNachRechts
+	linksUm();
+	linksUm();
+}
+
+
+/**
+ * nimmt alle Körner auf jetzigem Feld
+ */
+void nimmAlle() {
+	while(kornDa()) {
+		nimm();
+	}
+}
+
+/**
+ * Gehe vor, bis Mauer erreicht
+ */
+void vorBisMauer() {
+	while(vornFrei()) {
+		vor();
+	}
+}
+
+

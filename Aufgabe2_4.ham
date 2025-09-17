@@ -1,0 +1,104 @@
+/*imperative program*/void main() {
+    // Haus des Nikolaus
+    // r,ol,u,or,l,or,ul,u
+    
+    // nach rechts
+	gib();
+	vor();
+	gib();
+	vor();
+	gib();
+	vor();
+	gib();
+	vor();
+	gib();
+	// nach oben links
+	linksUm();
+	vor();
+	linksUm();
+	vor();
+	gib();
+	vor();
+	linksUm();
+	linksUm();
+	linksUm();
+	vor();
+	gib();
+	vor();
+	linksUm();
+	vor();
+	gib();
+	vor();
+	linksUm();
+	linksUm();
+	linksUm();
+	vor();
+	gib();
+	// nach unten
+	linksUm();
+	linksUm();
+	vor();
+	gib();
+	vor();
+	gib();
+	vor();
+	gib();
+	// nach oben rechts
+	linksUm();
+	vor();
+	gib();
+	vor();
+	linksUm();
+	vor();
+	vor();
+	linksUm();
+	linksUm();
+	linksUm();
+	vor();
+	gib();
+	vor();
+	linksUm();
+	vor();
+	gib();
+	//nach links
+	linksUm();
+	vor();
+	gib();
+	vor();
+	gib();
+	vor();
+	gib();
+	vor();
+	// Dach (oben links,unten rechts)
+	linksUm();
+	linksUm();
+	vor();
+	linksUm();
+	vor();
+	gib();
+	linksUm();
+	linksUm();
+	linksUm();
+	vor();
+	linksUm();
+	vor();
+	gib();
+	linksUm();
+	linksUm();
+	vor();
+	linksUm();
+	vor();
+	gib();
+	// nach unten
+	vor();
+	linksUm();
+	linksUm();
+	linksUm();
+	vor();
+	vor();
+	gib();
+	vor();
+	gib();
+	vor();
+	gib();
+}

@@ -1,0 +1,50 @@
+/*imperative program*/void main() {
+    
+}
+
+/**
+ * Dreht rechts (im Uhrzeigersinn), bzw. 3x links
+ */
+void rechtsUm() {
+	kehrt();
+	linksUm();
+}
+
+/**
+ * Geht mehrfach vor1
+ * @param times Wie oft vor gegangen werden soll
+ */
+void vorMehrfach(int times) {
+	for(int i=0; i<times; i++) {
+		vor();
+	}
+}
+
+/**
+ * dreht sich um 180 Grad / dreht sich 2x links
+ */
+void kehrt() {
+	linksUm();
+	linksUm();
+}
+
+
+/**
+ * nimmt alle Körner auf jetzigem Feld
+ */
+void nimmAlle() {
+	while(kornDa()) {
+		nimm();
+	}
+}
+
+/**
+ * Gehe vor, bis Mauer erreicht
+ */
+void vorBisMauer() {
+	while(vornFrei()) {
+		vor();
+	}
+}
+
+

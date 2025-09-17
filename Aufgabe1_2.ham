@@ -1,0 +1,28 @@
+/*imperative program*//*
+Korrektur vom code:
+Void main{} (
+linksum();
+linksum();
+linksum();
+vor();
+vor(),
+vor();
+nimmKorn();
+linksUm();
+vor()
+nimmKorn();
+)
+*/
+
+void main() {
+	linksUm();
+	linksUm();
+	linksUm();
+	vor();
+	vor();
+	vor();
+	nimm();
+	linksUm();
+	vor();
+	nimm();
+}
