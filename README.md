@@ -1,0 +1,1 @@
+## Java Hamster Programme (Studium)

@@ -4,6 +4,8 @@ int aktuellePositionX = 0; // aktuelle horizontale Position, 0 = 2. Spalte bzw. 
 int aktuellePositionY = 0; // TODO: zurzeit unused, löschen?
 boolean gucktNachRechts = true; // Hamster guckt anfangs nach rechts
 
+// TODO: Sleeps löschen
+
 // nur Werte von einschließlich 1-12 akzeptiert
 int zahlen[] = {3,1,6,5,9,4,2,12,10};
 
@@ -18,11 +20,15 @@ public void main() {
  * Geht zu angegebener horizontaler Position
  */
 void geheZuPosition(int position) {
-	if(aktuellePositionX==position || position<0 || position>MAX_ZAHLEN) {
+	if(aktuellePositionX==position) {
 		// Hamster ist bereits an gegebener Position
-		// oder: übergebene Position "out of bounds"
 		return;
-	} else if(aktuellePositionX>position) {
+	}
+	if(position<0 || position>MAX_ZAHLEN) {
+		// übergebene Position "out of bounds"
+		return;
+	}
+	if(aktuellePositionX>position) {
 		// Hamster muss nach links
 		if(gucktNachRechts) {
 			kehrt();
@@ -79,39 +85,44 @@ void selectionSort() {
 	if(gucktNachRechts == false) {
 		kehrt();
 	}
-	// suche kleinstes Element
+	
 	int startPosition = 0;
 	int koernerAnStartPosition;
-	//ab hier schleife?
+	// suche kleinstes Element
+	while(true) { //TODO: bedingung finden
+		geheZuPosition(startPosition);
+		int minKoerner = 13;
+		int minPosition = 0; // TODO: evtl anderer default wert, prüfen
+		while(vornFrei()) {
+			int aktuelleKoerner = zaehleKoerner();
+			if(aktuelleKoerner == 0) {
+				// leeres Feld/Ende, beende Schleife
+				break;
+			}
+			if(aktuelleKoerner < minKoerner) {
+				minKoerner = aktuelleKoerner;
+				minPosition = aktuellePositionX;
+			}
+			vor();
+			aktuellePositionX++;
+		}
 	
-	int minKoerner = 13;
-	int minPosition = 0; // TODO: evtl anderer default wert, prüfen
-	while(vornFrei()) {
-		int aktuelleKoerner = zaehleKoerner();
-		if(aktuelleKoerner == 0) {
-			// leeres Feld/Ende, beende Schleife
-			break;
-		}
-		if(aktuelleKoerner < minKoerner) {
-			minKoerner = aktuelleKoerner;
-			minPosition = aktuellePositionX;
-		}
-		vor();
-		aktuellePositionX++;
+		// gehe zu Startposition
+		geheZuPosition(startPosition);
+		koernerAnStartPosition = zaehleKoerner();
+	
+		// tausche kleinstes Element und Element an Startposition
+		// gehe zu Startposition und setze kleinstes Element ein
+		nimmAlle();
+		gibKoernerMehrfach(minKoerner);
+		// gehe zu minPosition und setze vorheriges Start-Element ein
+		geheZuPosition(minPosition);
+		nimmAlle();
+		gibKoernerMehrfach(koernerAnStartPosition);
+		startPosition++;
+		
+		sleep(2);
 	}
-	
-	// gehe zu Startposition
-	geheZuPosition(startPosition);
-	koernerAnStartPosition = zaehleKoerner();
-	
-	// tausche kleinstes Element und Element an Startposition
-	// gehe zu Startposition und setze kleinstes Element ein
-	nimmAlle();
-	gibKoernerMehrfach(minKoerner);
-	// gehe zu minPosition und setze vorheriges Start-Element ein
-	geheZuPosition(minPosition);
-	nimmAlle();
-	gibKoernerMehrfach(koernerAnStartPosition);
 }
 
 /**
