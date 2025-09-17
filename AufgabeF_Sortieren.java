@@ -1,13 +1,12 @@
 import de.hamster.debugger.model.Territorium;import de.hamster.debugger.model.Territory;import de.hamster.model.HamsterException;import de.hamster.model.HamsterInitialisierungsException;import de.hamster.model.HamsterNichtInitialisiertException;import de.hamster.model.KachelLeerException;import de.hamster.model.MauerDaException;import de.hamster.model.MaulLeerException;import de.hamster.model.MouthEmptyException;import de.hamster.model.WallInFrontException;import de.hamster.model.TileEmptyException;public class AufgabeF_Sortieren extends de.hamster.debugger.model.IHamster implements de.hamster.model.HamsterProgram {final int SPALTEN = 20; // Spalten des Territoriums
 final int MAX_ZAHLEN = SPALTEN-2; // erste und letzte Spalte ist eine Mauer
 int aktuellePositionX = 0; // aktuelle horizontale Position, 0 = 2. Spalte bzw. erstes weißes Feld 
-int aktuellePositionY = 0; // TODO: zurzeit unused, löschen?
 boolean gucktNachRechts = true; // Hamster guckt anfangs nach rechts
 
 // TODO: Sleeps löschen
 
 // nur Werte von einschließlich 1-12 akzeptiert
-int zahlen[] = {3,1,6,5,9,4,2,12,10};
+int zahlen[] = {0,1,2,4,3};
 
 public void main() {
 	schreibeZahlen();
@@ -89,7 +88,7 @@ void selectionSort() {
 	int startPosition = 0;
 	int koernerAnStartPosition;
 	// suche kleinstes Element
-	while(true) { //TODO: bedingung finden
+	while(startPosition < zahlen.length-1) { //TODO: bedingung finden
 		geheZuPosition(startPosition);
 		int minKoerner = 13;
 		int minPosition = 0; // TODO: evtl anderer default wert, prüfen
@@ -102,6 +101,9 @@ void selectionSort() {
 			if(aktuelleKoerner < minKoerner) {
 				minKoerner = aktuelleKoerner;
 				minPosition = aktuellePositionX;
+			}
+			if(gucktNachRechts==false) {
+				kehrt();
 			}
 			vor();
 			aktuellePositionX++;
@@ -120,9 +122,9 @@ void selectionSort() {
 		nimmAlle();
 		gibKoernerMehrfach(koernerAnStartPosition);
 		startPosition++;
-		
-		sleep(2);
 	}
+	geheZuPosition(0);
+	kehrt();
 }
 
 /**
@@ -154,14 +156,6 @@ void gibKoernerMehrfach(int koerner) {
 			schreib("FEHLER: Hamster hat nicht genug Körner");
 			return;
 		}
-	}
-}
-
-void sleep(int seconds) {
-	try {
-    	Thread.sleep(seconds*1000);
-	} catch (InterruptedException e) {
-    	Thread.currentThread().interrupt();
 	}
 }
 
