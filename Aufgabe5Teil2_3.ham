@@ -1,0 +1,79 @@
+/*imperative program*/void main() {
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+    linksUm();
+    vor();
+    safeNimm();
+    linksUm();
+    
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+    rechtsUm();
+    vor();
+    safeNimm();
+    rechtsUm();
+    
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+    linksUm();
+    vor();
+    safeNimm();
+    linksUm();
+    
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+    vor();
+    safeNimm();
+}
+
+void safeNimm() {
+	if(kornDa()) {
+		nimm();
+	}
+}
+
+/**
+ * Dreht rechts (im Uhrzeigersinn), bzw. 3x links
+ */
+void rechtsUm() {
+	kehrt();
+	linksUm();
+}
+
+/**
+ * dreht sich um 180 Grad / dreht sich 2x links
+ */
+void kehrt() {
+	linksUm();
+	linksUm();
+}

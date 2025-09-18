@@ -1,0 +1,43 @@
+/*imperative program*/void main() {
+    if(vornFrei()) {
+    	vor();
+    	if(!vornFrei()) {
+    		kehrt();
+    		vor();
+    		kehrt();
+    		return;
+    	}
+    	if(vornFrei()) {
+    		vor();
+    		if(!vornFrei()) {
+    			kehrt();
+    			vor();
+    			vor();
+    			kehrt();
+    			return;
+    		}
+    	}
+    }
+}
+
+
+
+
+// TEMPLATE ohne loop methoden
+/**
+ * Dreht rechts (im Uhrzeigersinn), bzw. 3x links
+ */
+void rechtsUm() {
+	kehrt();
+	linksUm();
+}
+
+/**
+ * dreht sich um 180 Grad / dreht sich 2x links
+ */
+void kehrt() {
+	linksUm();
+	linksUm();
+}
+
+

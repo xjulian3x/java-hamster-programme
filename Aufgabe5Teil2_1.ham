@@ -1,0 +1,45 @@
+/*imperative program*/// loops nicht erlaubt
+void main() {
+    aufgabe1d();
+}
+
+void aufgabe1a() {
+	// bei jeder Position dreht sich der Hamster nach links
+	if (maulLeer())
+		;
+	else
+		gib();
+		linksUm();
+}
+
+void aufgabe1b() {
+	// wie aufgabe 1a
+	if (!maulLeer()) {
+		gib();
+	}
+	linksUm();
+}
+
+void aufgabe1c() {
+	// 1: nichts
+	// 2: ein korn wird genommen und vor gegangen
+	// 3: nichts
+	// 4: nichts
+	if (kornDa() && vornFrei()) {
+		nimm();
+		vor();
+	}
+}
+
+void aufgabe1d() {
+	// keinen bock mehr weiter zur nächsten aufgabe
+	if (vornFrei()) {
+		vor();
+	} else if (kornDa()) {
+		nimm();
+	} else if (!maulLeer()) {
+		gib();
+	} else {
+		linksUm();
+	}
+}

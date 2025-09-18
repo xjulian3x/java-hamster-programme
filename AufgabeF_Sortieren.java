@@ -6,7 +6,7 @@ boolean gucktNachRechts = true; // Hamster guckt anfangs nach rechts
 // TODO: Sleeps löschen
 
 // nur Werte von einschließlich 1-12 akzeptiert
-int zahlen[] = {0,1,2,4,3};
+int zahlen[] = {0,1,2,4,3,8,5,6,10,12,9,11};
 
 public void main() {
 	schreibeZahlen();

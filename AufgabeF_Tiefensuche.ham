@@ -1,6 +1,36 @@
 /*imperative program*/void main() {
-    
+    tiefenSuche();
 }
+
+void tiefenSuche() {
+	// Gebe überall in Reihe 4 Körner
+	while(vornFrei()) {
+		if(!kornDa()) {
+			gibKoernerMehrfach(4);
+		}
+		vor();
+		if(!kornDa()) {
+			gibKoernerMehrfach(4);
+		}
+	}
+	kehrt();
+	// für jedes "junction durchlaufen" 1 korn wegnehmen
+	// --> 
+	while(vornFrei()) {
+		int drehCount = 0;
+		int koernerAufFeld = zaehleKoerner();
+		while((koernerAufFeld > 1) || !(vornFrei() && (drehCount != 2 || drehCount != 4))) {
+			nimm();
+			linksUm();
+			drehCount++;
+			koernerAufFeld = zaehleKoerner();
+		}
+		vor();
+	}
+}
+
+
+// ***TEMPLATE***
 
 /**
  * Dreht rechts (im Uhrzeigersinn), bzw. 3x links
@@ -73,4 +103,3 @@ void gibKoernerMehrfach(int koerner) {
 		gib();
 	}
 }
-
